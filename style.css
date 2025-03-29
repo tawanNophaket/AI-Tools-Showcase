@@ -133,7 +133,7 @@ img {
   display: block;
 }
 
-/* --- Keyframe Animations --- */
+/* --- Keyframe Animations (Unchanged) --- */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -142,7 +142,6 @@ img {
     opacity: 1;
   }
 }
-
 @keyframes revealUp {
   from {
     opacity: 0;
@@ -153,9 +152,7 @@ img {
     transform: translateY(0);
   }
 }
-
 @keyframes pulseGlow {
-  /* Adjusted for orange */
   0%,
   100% {
     box-shadow: 0 0 15px 0px var(--accent-color);
@@ -164,7 +161,6 @@ img {
     box-shadow: 0 0 25px 8px hsla(var(--accent-hue), 95%, 55%, 0.5);
   }
 }
-
 @keyframes tilt {
   0% {
     transform: rotateY(0deg) rotateX(0deg);
@@ -176,7 +172,6 @@ img {
     transform: rotateY(0deg) rotateX(0deg);
   }
 }
-
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -189,7 +184,6 @@ img {
 /* --- Header / Hero Section --- */
 .hero {
   position: relative;
-  /* Dark Gradient Background */
   background: linear-gradient(
     140deg,
     var(--dark-bg-primary) 0%,
@@ -206,14 +200,15 @@ img {
 .hero-bg-shape {
   position: absolute;
   border-radius: 50%;
-  opacity: 0.06; /* Lower opacity for dark theme */
-  filter: blur(60px); /* More blur */
+  opacity: 0.06;
+  filter: blur(60px);
   pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Add transition for potential hiding */
 }
 .shape1 {
   width: 450px;
   height: 450px;
-  background-color: var(--accent-color); /* Orange shape */
+  background-color: var(--accent-color);
   top: -120px;
   left: -180px;
   animation: fadeIn 2s ease-out;
@@ -221,7 +216,7 @@ img {
 .shape2 {
   width: 350px;
   height: 350px;
-  background-color: hsl(var(--accent-hue), 70%, 70%); /* Lighter orange */
+  background-color: hsl(var(--accent-hue), 70%, 70%);
   bottom: -100px;
   right: -120px;
   animation: fadeIn 2s 0.5s ease-out;
@@ -238,7 +233,7 @@ img {
   margin-bottom: 0.6em;
   color: var(--light-text);
   line-height: 1.15;
-  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4); /* Slightly stronger shadow */
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
 }
 .hero-headline .headline-line {
   display: block;
@@ -253,7 +248,6 @@ img {
 }
 
 .highlight-text {
-  /* Orange highlight */
   background: linear-gradient(
     90deg,
     var(--accent-color),
@@ -270,21 +264,15 @@ img {
   max-width: 750px;
   margin: 0 auto 3rem auto;
   opacity: 0;
-  color: var(--body-text); /* Use body text color for subtitle */
+  color: var(--body-text);
   animation: revealUp 1s 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 .desktop-break {
   display: block;
 }
-@media (max-width: 768px) {
-  .desktop-break {
-    display: none;
-  }
-}
 
 .cta-button {
-  /* Orange Button */
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -293,21 +281,21 @@ img {
     var(--accent-color),
     var(--accent-hover-color)
   );
-  color: var(--dark-text-on-accent); /* Dark text on orange */
+  color: var(--dark-text-on-accent);
   padding: 1.1rem 3rem;
   border-radius: 50px;
   font-weight: 700;
   font-size: 1.15rem;
   transition: transform var(--transition-speed-fast) ease,
     box-shadow var(--transition-speed-fast) ease;
-  box-shadow: 0 6px 20px hsla(var(--accent-hue), 95%, 55%, 0.35); /* Orange shadow */
+  box-shadow: 0 6px 20px hsla(var(--accent-hue), 95%, 55%, 0.35);
   opacity: 0;
   animation: revealUp 1s 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 .cta-button::before {
-  /* Subtle shine effect on hover */
   content: "";
   position: absolute;
   top: 0;
@@ -319,7 +307,7 @@ img {
     rgba(255, 255, 255, 0) 0%,
     rgba(255, 255, 255, 0.2) 50%,
     rgba(255, 255, 255, 0) 100%
-  ); /* Less intense shine */
+  );
   transform: skewX(-25deg);
   transition: left var(--transition-speed-normal) ease;
 }
@@ -355,7 +343,7 @@ img {
   height: 100px;
 }
 .custom-shape-divider-bottom-1701182488 .shape-fill {
-  fill: var(--dark-bg-primary); /* Match body background */
+  fill: var(--dark-bg-primary);
 }
 
 /* --- Tools Section --- */
@@ -370,48 +358,41 @@ img {
   gap: 2.8rem;
 }
 
-/* --- Tool Card Styling (Dark Theme Adaptation) --- */
+/* --- Tool Card Styling --- */
 .tool-card {
-  background: var(--card-bg); /* Dark transparent background */
+  background: var(--card-bg);
   border-radius: var(--border-radius-lg);
-  border: 1px solid var(--card-border-color); /* Subtle dark border */
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Darker, more diffuse shadow */
+  border: 1px solid var(--card-border-color);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  opacity: 0; /* JS Animation */
+  opacity: 0;
   transform: translateY(50px) scale(0.98);
   transition: opacity var(--transition-speed-slow) ease-out,
     transform var(--transition-speed-slow) cubic-bezier(0.165, 0.84, 0.44, 1),
     box-shadow var(--transition-speed-normal) ease,
     border-color var(--transition-speed-normal) ease,
-    background var(--transition-speed-normal) ease; /* Added background transition */
+    background var(--transition-speed-normal) ease;
   will-change: transform, opacity, box-shadow;
   position: relative;
-  backdrop-filter: blur(12px); /* Slightly stronger blur */
+  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
-
 .tool-card.visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
-  /* transition-delay set by JS */
+  transform: translateY(0) scale(1); /* transition-delay set by JS */
 }
 
 /* Card Hover Effects */
 .tool-card:hover {
   transform: translateY(-10px) scale(1.02);
   box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
-  border-color: hsla(
-    var(--accent-hue),
-    95%,
-    60%,
-    0.6
-  ); /* Orange border highlight */
-  background: rgba(41, 52, 69, 0.85); /* Slightly lighter card bg on hover */
+  border-color: hsla(var(--accent-hue), 95%, 60%, 0.6);
+  background: rgba(41, 52, 69, 0.85);
 }
 
-/* Border Glow Effect (Orange) */
+/* Border Glow Effect */
 .card-border-glow {
   position: absolute;
   top: -2px;
@@ -423,7 +404,7 @@ img {
     from 180deg at 50% 50%,
     hsla(var(--accent-hue), 95%, 55%, 0) 0%,
     hsla(var(--accent-hue), 95%, 55%, 0.7) 50%,
-    /* Brighter orange glow */ hsla(var(--accent-hue), 95%, 55%, 0) 100%
+    hsla(var(--accent-hue), 95%, 55%, 0) 100%
   );
   opacity: 0;
   transition: opacity var(--transition-speed-normal) ease;
@@ -448,7 +429,6 @@ img {
   background-position: center;
   transition: transform var(--transition-speed-normal) ease;
 }
-/* Gradient Overlay (Adjusted for dark theme) */
 .tool-card-image-placeholder::after {
   content: "";
   position: absolute;
@@ -457,7 +437,7 @@ img {
     0deg,
     rgba(17, 24, 39, 0.7) 0%,
     rgba(17, 24, 39, 0) 50%
-  ); /* Darker overlay */
+  );
   opacity: 0.8;
   transition: opacity var(--transition-speed-normal) ease;
 }
@@ -473,14 +453,14 @@ img {
   opacity: 0.9;
   transition: transform var(--transition-speed-normal)
     cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.5); /* Stronger shadow for light icon */
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
 .tool-card:hover .tool-icon {
   transform: scale(1.15) rotate(-8deg);
 }
 
-/* Specific Backgrounds (Orange Gradients) */
+/* Specific Backgrounds */
 .bg-chatgpt {
   background: linear-gradient(135deg, #fb923c, #f97316);
 }
@@ -492,13 +472,13 @@ img {
 }
 .bg-notion {
   background: linear-gradient(135deg, #ffedd5, #fb923c);
-} /* Lighter orange */
+}
 .bg-descript {
   background: linear-gradient(135deg, #fca5a5, #f97316);
-} /* Reddish Orange */
+}
 .bg-gamma {
   background: linear-gradient(135deg, #fde68a, #d97706);
-} /* Yellowish Orange */
+}
 
 .tool-card-content {
   padding: 2rem;
@@ -511,7 +491,7 @@ img {
 .tool-card h3 {
   font-size: 1.6rem;
   margin-bottom: 0.6rem;
-  color: var(--light-text); /* Light heading */
+  color: var(--light-text);
   font-weight: 700;
 }
 
@@ -537,17 +517,13 @@ img {
 .tool-usecase:hover {
   transform: scale(1.05);
 }
-
-/* Tag Styling for Dark Theme */
 .tool-category {
-  /* Dark tag with orange text */
-  background-color: rgba(249, 115, 22, 0.1); /* Orange transparent bg */
+  background-color: rgba(249, 115, 22, 0.1);
   color: var(--accent-hover-color);
   border-color: rgba(249, 115, 22, 0.3);
 }
 .tool-usecase {
-  /* Darker tag with lighter text */
-  background-color: rgba(107, 114, 128, 0.2); /* Grey transparent bg */
+  background-color: rgba(107, 114, 128, 0.2);
   color: var(--subtle-text);
   border-color: rgba(107, 114, 128, 0.3);
 }
@@ -557,34 +533,34 @@ img {
   flex-grow: 1;
   margin-bottom: 2rem;
   line-height: 1.7;
-  color: var(--body-text); /* Use lighter body text */
+  color: var(--body-text);
 }
 
-/* Tool Link Button (Outline Style) */
+/* Tool Link Button */
 .tool-link {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: transparent; /* No background */
-  border: 2px solid var(--accent-dark); /* Darker orange border */
-  color: var(--accent-color); /* Orange text */
+  background: transparent;
+  border: 2px solid var(--accent-dark);
+  color: var(--accent-color);
   padding: 0.8rem 1.6rem;
   border-radius: var(--border-radius-sm);
   font-weight: 600;
   text-align: center;
   transition: all var(--transition-speed-fast) ease;
   align-self: flex-start;
-  box-shadow: none; /* Remove shadow */
+  box-shadow: none;
+  cursor: pointer;
 }
 .tool-link i {
   transition: transform 0.2s ease;
 }
 .tool-link:hover {
-  background: var(--accent-color); /* Orange fill on hover */
-  color: var(--dark-text-on-accent); /* Dark text */
+  background: var(--accent-color);
+  color: var(--dark-text-on-accent);
   border-color: var(--accent-color);
   transform: scale(1.04) translateY(-2px);
-  /* box-shadow: 0 4px 12px hsla(var(--accent-hue), 95%, 55%, 0.2); */ /* Optional subtle shadow */
 }
 .tool-link:hover i {
   transform: translateX(4px);
@@ -592,26 +568,22 @@ img {
 
 /* --- Footer --- */
 .site-footer {
-  background-color: var(
-    --dark-bg-secondary
-  ); /* Slightly lighter dark for footer */
+  background-color: var(--dark-bg-secondary);
   color: var(--subtle-text);
   padding: 4rem 0 2rem 0;
   margin-top: auto;
-  border-top: 1px solid var(--card-border-color); /* Add subtle top border */
+  border-top: 1px solid var(--card-border-color);
 }
-
 .footer-content {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2.5rem;
   margin-bottom: 3rem;
 }
-
 .footer-about h4,
 .footer-links h4,
 .footer-social h4 {
-  color: var(--light-text); /* Light footer headings */
+  color: var(--light-text);
   font-weight: 600;
   margin-bottom: 1rem;
   font-size: 1.1rem;
@@ -621,7 +593,6 @@ img {
   line-height: 1.6;
   font-size: 0.95rem;
 }
-
 .footer-links ul {
   list-style: none;
   padding: 0;
@@ -638,7 +609,6 @@ img {
   color: var(--accent-color);
   padding-left: 5px;
 }
-
 .footer-social a {
   color: var(--subtle-text);
   font-size: 1.3rem;
@@ -654,9 +624,8 @@ img {
 .footer-social a:last-child {
   margin-right: 0;
 }
-
 .footer-bottom {
-  border-top: 1px solid rgba(243, 244, 246, 0.1); /* Lighter border */
+  border-top: 1px solid rgba(243, 244, 246, 0.1);
   padding-top: 1.5rem;
   text-align: center;
   font-size: 0.9rem;
@@ -666,98 +635,225 @@ img {
   color: inherit;
 }
 
-/* --- Responsive Design Adjustments --- */
+/* =========================================== */
+/* --- Enhanced Mobile Responsive Styles --- */
+/* =========================================== */
+
+/* --- Tablet & Large Phones (max-width: 992px) --- */
 @media (max-width: 992px) {
+  .container {
+    padding: 0 25px;
+  } /* Slightly less padding */
   .hero {
     padding: 7rem 0 9rem 0;
   }
+  .hero-headline {
+    font-size: clamp(2.8rem, 6.5vw, 4rem);
+  } /* Adjust clamp */
+  .hero .subtitle {
+    font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+  }
   .tool-grid {
-    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2.2rem;
   }
   .footer-content {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
+  .tool-card h3 {
+    font-size: 1.5rem;
+  }
+  .tool-card p {
+    font-size: 0.95rem;
+  }
 }
 
+/* --- Smaller Tablets & Phones (max-width: 768px) --- */
 @media (max-width: 768px) {
   .container {
     padding: 0 20px;
-  }
+  } /* Further reduce padding */
   .hero {
-    padding: 6rem 0 8rem 0;
-    text-align: center;
-  }
+    padding: 5.5rem 0 7rem 0;
+  } /* Reduce hero padding */
   .hero-headline {
-    font-size: 2.8rem;
-  }
+    font-size: clamp(2.4rem, 8vw, 3.2rem);
+    line-height: 1.2;
+  } /* Smaller headline */
   .hero .subtitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    max-width: 90%;
+    margin-bottom: 2.5rem;
   }
+  .desktop-break {
+    display: none;
+  } /* Remove forced break */
+
+  .tools-section {
+    padding: 4.5rem 0;
+  } /* Reduce section padding */
   .tools-section h2 {
-    font-size: 2.2rem;
-  }
+    font-size: clamp(1.8rem, 5vw, 2.2rem);
+    margin-bottom: 2.2em;
+  } /* Smaller section heading */
+
   .tool-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
-  }
+  } /* Single column grid */
+
   .tool-card-image-placeholder {
     height: 180px;
-  }
+  } /* Maintain image height or slightly reduce */
   .tool-icon {
     font-size: 3.5rem;
   }
+  .tool-card h3 {
+    font-size: 1.4rem;
+  }
+  .tool-card-content {
+    padding: 1.8rem;
+  } /* Slightly less padding in card */
+  .tool-card p {
+    font-size: 0.92rem;
+    margin-bottom: 1.8rem;
+  }
+
   .footer-content {
     text-align: center;
-    grid-template-columns: 1fr; /* Stack footer columns */
-  }
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  } /* Stack footer columns */
   .footer-about,
   .footer-links,
   .footer-social {
     margin-bottom: 2rem;
   }
   .footer-social {
+    display: flex;
     justify-content: center;
-  } /* Center social icons */
+    gap: 1.5rem;
+  } /* Center social icons with gap */
+  .footer-social a {
+    margin-right: 0;
+  } /* Remove right margin */
 }
 
+/* --- Smaller Phones (max-width: 480px) --- */
 @media (max-width: 480px) {
   html {
     font-size: 15px;
-  }
+  } /* Slightly smaller base font */
+  .container {
+    padding: 0 15px;
+  } /* Minimum padding */
+
   .hero {
-    padding: 5rem 0 7rem 0;
-  }
+    padding: 4.5rem 0 6rem 0;
+  } /* Less padding */
   .hero-headline {
-    font-size: 2.4rem;
+    font-size: clamp(2rem, 10vw, 2.6rem);
+  } /* Further reduce headline */
+  .hero .subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
   }
   .cta-button {
-    padding: 1rem 2.5rem;
-    font-size: 1.05rem;
-    width: 95%;
-    justify-content: center;
+    padding: 1rem 2rem; /* Adjust padding for touch */
+    font-size: 1rem;
+    width: 90%; /* Near full width */
+    margin-left: auto;
+    margin-right: auto; /* Center the button */
+    justify-content: center; /* Ensure text/icon centered */
   }
+
+  /* Optional: Hide background shapes on very small screens */
+  .hero-bg-shape {
+    opacity: 0.03;
+    transform: scale(0.8);
+    /* display: none; */ /* Uncomment to hide completely */
+  }
+
+  .custom-shape-divider-bottom-1701182488 svg {
+    height: 70px;
+  } /* Reduce divider height */
+
   .tools-section {
-    padding: 4rem 0;
+    padding: 3.5rem 0;
   }
   .tools-section h2 {
-    font-size: 2rem;
-    margin-bottom: 2.5em;
+    font-size: 1.8rem;
+    margin-bottom: 2em;
+    gap: 10px;
+  }
+  .tools-section h2 i {
+    font-size: 1.5rem;
+  }
+
+  .tool-grid {
+    gap: 1.8rem;
+  }
+  .tool-card {
+    border-radius: var(--border-radius-md);
+  } /* Slightly smaller radius */
+  .tool-card-image-placeholder {
+    height: 160px;
+  } /* Smaller image area */
+  .tool-icon {
+    font-size: 3rem;
   }
   .tool-card-content {
     padding: 1.5rem;
+  } /* Less card padding */
+  .tool-card h3 {
+    font-size: 1.3rem;
   }
+  .tool-tags {
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .tool-category,
+  .tool-usecase {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.7rem;
+  }
+  .tool-card p {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
   .tool-link {
-    width: 100%;
-    justify-content: center;
-    padding: 0.9rem 1rem;
+    width: 100%; /* Full width button */
+    justify-content: center; /* Center text/icon */
+    padding: 0.9rem 1rem; /* Good touch height */
+    font-size: 0.95rem;
+  }
+
+  .site-footer {
+    padding: 3rem 0 1.5rem 0;
   }
   .footer-content {
-    gap: 2rem;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
   }
-  .footer-about,
-  .footer-links,
-  .footer-social {
-    margin-bottom: 1.5rem;
-  } /* Slightly less margin */
+  .footer-about h4,
+  .footer-links h4,
+  .footer-social h4 {
+    font-size: 1.05rem;
+    margin-bottom: 0.8rem;
+  }
+  .footer-about p,
+  .footer-links li {
+    font-size: 0.9rem;
+  }
+  .footer-links li {
+    margin-bottom: 0.5rem;
+  }
+  .footer-social a {
+    font-size: 1.2rem;
+  }
+  .footer-bottom {
+    padding-top: 1.2rem;
+    font-size: 0.85rem;
+  }
 }
