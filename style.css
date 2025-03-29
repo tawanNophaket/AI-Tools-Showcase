@@ -1,0 +1,763 @@
+/* --- CSS Variables (Dark & Orange Theme) --- */
+:root {
+  /* Orange Palette */
+  --accent-hue: 30; /* Hue for Orange */
+  --accent-color: hsl(
+    var(--accent-hue),
+    95%,
+    55%
+  ); /* Vibrant Orange (e.g., #F97316) */
+  --accent-hover-color: hsl(
+    var(--accent-hue),
+    100%,
+    60%
+  ); /* Lighter/Brighter Orange */
+  --accent-dark: hsl(var(--accent-hue), 90%, 45%);
+
+  /* Dark Palette */
+  --dark-bg-primary: #111827; /* Very Dark Blue/Grey */
+  --dark-bg-secondary: #1f2937; /* Slightly Lighter Dark */
+  --card-bg: rgba(
+    31,
+    41,
+    55,
+    0.8
+  ); /* Dark Transparent Card BG (#1F2937 with alpha) */
+  --card-border-color: hsla(220, 13%, 35%, 0.5); /* Subtle dark border */
+
+  /* Text Colors */
+  --light-text: #f3f4f6; /* Off-white */
+  --body-text: #d1d5db; /* Light Grey for body */
+  --subtle-text: #9ca3af; /* Dimmer Grey */
+  --dark-text-on-accent: #111827; /* Dark text for orange buttons */
+
+  /* Shadows (Orange Glow) */
+  --shadow-color: hsla(
+    var(--accent-hue),
+    95%,
+    55%,
+    0.15
+  ); /* Orange shadow base */
+  --shadow-light: 0 5px 15px var(--shadow-color);
+  --shadow-medium: 0 10px 30px var(--shadow-color);
+  --shadow-hover: 0 15px 40px hsla(var(--accent-hue), 95%, 55%, 0.25);
+
+  /* Other Variables (Mostly unchanged) */
+  --font-primary: "Poppins", sans-serif;
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  --transition-speed-fast: 0.25s;
+  --transition-speed-normal: 0.4s;
+  --transition-speed-slow: 0.6s;
+}
+
+/* --- Global Styles & Reset --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-primary);
+  line-height: 1.7;
+  color: var(--body-text);
+  background-color: var(--dark-bg-primary); /* Dark Background */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  /* Optional: Subtle dark noise */
+  /* background-image: url("data:image/svg+xml,..."); */
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+  margin-bottom: 0.6em;
+  color: var(--light-text); /* Light text for headings */
+  line-height: 1.3;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  font-size: clamp(2rem, 4.5vw, 2.8rem);
+  text-align: center;
+  margin-bottom: 2.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+h2 i {
+  color: var(--accent-color); /* Orange icon */
+  font-size: 1.8rem;
+  transform: translateY(-2px);
+}
+
+p {
+  margin-bottom: 1.3em;
+  color: var(--body-text);
+  max-width: 68ch;
+}
+
+a {
+  text-decoration: none;
+  color: var(--accent-color); /* Orange links */
+  transition: color var(--transition-speed-fast) ease;
+}
+a:hover {
+  color: var(--accent-hover-color);
+} /* Brighter orange on hover */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- Keyframe Animations --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  /* Adjusted for orange */
+  0%,
+  100% {
+    box-shadow: 0 0 15px 0px var(--accent-color);
+  }
+  50% {
+    box-shadow: 0 0 25px 8px hsla(var(--accent-hue), 95%, 55%, 0.5);
+  }
+}
+
+@keyframes tilt {
+  0% {
+    transform: rotateY(0deg) rotateX(0deg);
+  }
+  50% {
+    transform: rotateY(3deg) rotateX(2deg);
+  }
+  100% {
+    transform: rotateY(0deg) rotateX(0deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Header / Hero Section --- */
+.hero {
+  position: relative;
+  /* Dark Gradient Background */
+  background: linear-gradient(
+    140deg,
+    var(--dark-bg-primary) 0%,
+    #161e2e 60%,
+    var(--dark-bg-secondary) 100%
+  );
+  color: var(--light-text);
+  padding: 8rem 0 10rem 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Background Shapes */
+.hero-bg-shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.06; /* Lower opacity for dark theme */
+  filter: blur(60px); /* More blur */
+  pointer-events: none;
+}
+.shape1 {
+  width: 450px;
+  height: 450px;
+  background-color: var(--accent-color); /* Orange shape */
+  top: -120px;
+  left: -180px;
+  animation: fadeIn 2s ease-out;
+}
+.shape2 {
+  width: 350px;
+  height: 350px;
+  background-color: hsl(var(--accent-hue), 70%, 70%); /* Lighter orange */
+  bottom: -100px;
+  right: -120px;
+  animation: fadeIn 2s 0.5s ease-out;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-headline {
+  font-size: clamp(3rem, 7vw, 4.8rem);
+  font-weight: 800;
+  margin-bottom: 0.6em;
+  color: var(--light-text);
+  line-height: 1.15;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4); /* Slightly stronger shadow */
+}
+.hero-headline .headline-line {
+  display: block;
+  opacity: 0;
+  animation: revealUp 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+.hero-headline .headline-line:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.hero-headline .headline-line:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.highlight-text {
+  /* Orange highlight */
+  background: linear-gradient(
+    90deg,
+    var(--accent-color),
+    var(--accent-hover-color)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.hero .subtitle {
+  font-size: clamp(1.1rem, 2.8vw, 1.4rem);
+  font-weight: 400;
+  max-width: 750px;
+  margin: 0 auto 3rem auto;
+  opacity: 0;
+  color: var(--body-text); /* Use body text color for subtitle */
+  animation: revealUp 1s 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.desktop-break {
+  display: block;
+}
+@media (max-width: 768px) {
+  .desktop-break {
+    display: none;
+  }
+}
+
+.cta-button {
+  /* Orange Button */
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(
+    45deg,
+    var(--accent-color),
+    var(--accent-hover-color)
+  );
+  color: var(--dark-text-on-accent); /* Dark text on orange */
+  padding: 1.1rem 3rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.15rem;
+  transition: transform var(--transition-speed-fast) ease,
+    box-shadow var(--transition-speed-fast) ease;
+  box-shadow: 0 6px 20px hsla(var(--accent-hue), 95%, 55%, 0.35); /* Orange shadow */
+  opacity: 0;
+  animation: revealUp 1s 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  position: relative;
+  overflow: hidden;
+}
+.cta-button::before {
+  /* Subtle shine effect on hover */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  ); /* Less intense shine */
+  transform: skewX(-25deg);
+  transition: left var(--transition-speed-normal) ease;
+}
+.cta-button:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 10px 25px hsla(var(--accent-hue), 95%, 55%, 0.45);
+}
+.cta-button:hover::before {
+  left: 125%;
+}
+.cta-button:hover i {
+  transform: translateX(5px);
+}
+.cta-button i {
+  transition: transform var(--transition-speed-fast) ease;
+}
+
+/* Shape Divider */
+.custom-shape-divider-bottom-1701182488 {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+  z-index: 1;
+}
+.custom-shape-divider-bottom-1701182488 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 100px;
+}
+.custom-shape-divider-bottom-1701182488 .shape-fill {
+  fill: var(--dark-bg-primary); /* Match body background */
+}
+
+/* --- Tools Section --- */
+.tools-section {
+  padding: 6rem 0;
+}
+
+/* --- Tool Grid Layout --- */
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 2.8rem;
+}
+
+/* --- Tool Card Styling (Dark Theme Adaptation) --- */
+.tool-card {
+  background: var(--card-bg); /* Dark transparent background */
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--card-border-color); /* Subtle dark border */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Darker, more diffuse shadow */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0; /* JS Animation */
+  transform: translateY(50px) scale(0.98);
+  transition: opacity var(--transition-speed-slow) ease-out,
+    transform var(--transition-speed-slow) cubic-bezier(0.165, 0.84, 0.44, 1),
+    box-shadow var(--transition-speed-normal) ease,
+    border-color var(--transition-speed-normal) ease,
+    background var(--transition-speed-normal) ease; /* Added background transition */
+  will-change: transform, opacity, box-shadow;
+  position: relative;
+  backdrop-filter: blur(12px); /* Slightly stronger blur */
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.tool-card.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  /* transition-delay set by JS */
+}
+
+/* Card Hover Effects */
+.tool-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
+  border-color: hsla(
+    var(--accent-hue),
+    95%,
+    60%,
+    0.6
+  ); /* Orange border highlight */
+  background: rgba(41, 52, 69, 0.85); /* Slightly lighter card bg on hover */
+}
+
+/* Border Glow Effect (Orange) */
+.card-border-glow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    hsla(var(--accent-hue), 95%, 55%, 0) 0%,
+    hsla(var(--accent-hue), 95%, 55%, 0.7) 50%,
+    /* Brighter orange glow */ hsla(var(--accent-hue), 95%, 55%, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-speed-normal) ease;
+  z-index: -1;
+  animation: spin 4s linear infinite paused;
+}
+.tool-card:hover .card-border-glow {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+/* Image Placeholder */
+.tool-card-image-placeholder {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--light-text);
+  overflow: hidden;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  transition: transform var(--transition-speed-normal) ease;
+}
+/* Gradient Overlay (Adjusted for dark theme) */
+.tool-card-image-placeholder::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(17, 24, 39, 0.7) 0%,
+    rgba(17, 24, 39, 0) 50%
+  ); /* Darker overlay */
+  opacity: 0.8;
+  transition: opacity var(--transition-speed-normal) ease;
+}
+.tool-card:hover .tool-card-image-placeholder {
+  transform: scale(1.05);
+}
+.tool-card:hover .tool-card-image-placeholder::after {
+  opacity: 0.6;
+}
+
+.tool-icon {
+  font-size: 4rem;
+  opacity: 0.9;
+  transition: transform var(--transition-speed-normal)
+    cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.5); /* Stronger shadow for light icon */
+  z-index: 1;
+}
+.tool-card:hover .tool-icon {
+  transform: scale(1.15) rotate(-8deg);
+}
+
+/* Specific Backgrounds (Orange Gradients) */
+.bg-chatgpt {
+  background: linear-gradient(135deg, #fb923c, #f97316);
+}
+.bg-midjourney {
+  background: linear-gradient(135deg, #fdba74, #ea580c);
+}
+.bg-copilot {
+  background: linear-gradient(135deg, #fed7aa, #f97316);
+}
+.bg-notion {
+  background: linear-gradient(135deg, #ffedd5, #fb923c);
+} /* Lighter orange */
+.bg-descript {
+  background: linear-gradient(135deg, #fca5a5, #f97316);
+} /* Reddish Orange */
+.bg-gamma {
+  background: linear-gradient(135deg, #fde68a, #d97706);
+} /* Yellowish Orange */
+
+.tool-card-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  z-index: 1;
+}
+
+.tool-card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.6rem;
+  color: var(--light-text); /* Light heading */
+  font-weight: 700;
+}
+
+.tool-tags {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.tool-category,
+.tool-usecase {
+  padding: 0.35rem 1rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border: 1px solid transparent;
+  transition: transform var(--transition-speed-fast) ease;
+}
+.tool-category:hover,
+.tool-usecase:hover {
+  transform: scale(1.05);
+}
+
+/* Tag Styling for Dark Theme */
+.tool-category {
+  /* Dark tag with orange text */
+  background-color: rgba(249, 115, 22, 0.1); /* Orange transparent bg */
+  color: var(--accent-hover-color);
+  border-color: rgba(249, 115, 22, 0.3);
+}
+.tool-usecase {
+  /* Darker tag with lighter text */
+  background-color: rgba(107, 114, 128, 0.2); /* Grey transparent bg */
+  color: var(--subtle-text);
+  border-color: rgba(107, 114, 128, 0.3);
+}
+
+.tool-card p {
+  font-size: 0.98rem;
+  flex-grow: 1;
+  margin-bottom: 2rem;
+  line-height: 1.7;
+  color: var(--body-text); /* Use lighter body text */
+}
+
+/* Tool Link Button (Outline Style) */
+.tool-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent; /* No background */
+  border: 2px solid var(--accent-dark); /* Darker orange border */
+  color: var(--accent-color); /* Orange text */
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--border-radius-sm);
+  font-weight: 600;
+  text-align: center;
+  transition: all var(--transition-speed-fast) ease;
+  align-self: flex-start;
+  box-shadow: none; /* Remove shadow */
+}
+.tool-link i {
+  transition: transform 0.2s ease;
+}
+.tool-link:hover {
+  background: var(--accent-color); /* Orange fill on hover */
+  color: var(--dark-text-on-accent); /* Dark text */
+  border-color: var(--accent-color);
+  transform: scale(1.04) translateY(-2px);
+  /* box-shadow: 0 4px 12px hsla(var(--accent-hue), 95%, 55%, 0.2); */ /* Optional subtle shadow */
+}
+.tool-link:hover i {
+  transform: translateX(4px);
+}
+
+/* --- Footer --- */
+.site-footer {
+  background-color: var(
+    --dark-bg-secondary
+  ); /* Slightly lighter dark for footer */
+  color: var(--subtle-text);
+  padding: 4rem 0 2rem 0;
+  margin-top: auto;
+  border-top: 1px solid var(--card-border-color); /* Add subtle top border */
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.footer-about h4,
+.footer-links h4,
+.footer-social h4 {
+  color: var(--light-text); /* Light footer headings */
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+.footer-about p {
+  color: var(--subtle-text);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+.footer-links li {
+  margin-bottom: 0.6rem;
+}
+.footer-links a {
+  color: var(--subtle-text);
+  transition: color var(--transition-speed-fast) ease,
+    padding-left var(--transition-speed-fast) ease;
+}
+.footer-links a:hover {
+  color: var(--accent-color);
+  padding-left: 5px;
+}
+
+.footer-social a {
+  color: var(--subtle-text);
+  font-size: 1.3rem;
+  margin-right: 1rem;
+  transition: color var(--transition-speed-fast) ease,
+    transform var(--transition-speed-fast) ease;
+  display: inline-block;
+}
+.footer-social a:hover {
+  color: var(--accent-color);
+  transform: scale(1.1) translateY(-2px);
+}
+.footer-social a:last-child {
+  margin-right: 0;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(243, 244, 246, 0.1); /* Lighter border */
+  padding-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.footer-bottom p {
+  margin-bottom: 0;
+  color: inherit;
+}
+
+/* --- Responsive Design Adjustments --- */
+@media (max-width: 992px) {
+  .hero {
+    padding: 7rem 0 9rem 0;
+  }
+  .tool-grid {
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 2.2rem;
+  }
+  .footer-content {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+  .hero {
+    padding: 6rem 0 8rem 0;
+    text-align: center;
+  }
+  .hero-headline {
+    font-size: 2.8rem;
+  }
+  .hero .subtitle {
+    font-size: 1.2rem;
+  }
+  .tools-section h2 {
+    font-size: 2.2rem;
+  }
+  .tool-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .tool-card-image-placeholder {
+    height: 180px;
+  }
+  .tool-icon {
+    font-size: 3.5rem;
+  }
+  .footer-content {
+    text-align: center;
+    grid-template-columns: 1fr; /* Stack footer columns */
+  }
+  .footer-about,
+  .footer-links,
+  .footer-social {
+    margin-bottom: 2rem;
+  }
+  .footer-social {
+    justify-content: center;
+  } /* Center social icons */
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 15px;
+  }
+  .hero {
+    padding: 5rem 0 7rem 0;
+  }
+  .hero-headline {
+    font-size: 2.4rem;
+  }
+  .cta-button {
+    padding: 1rem 2.5rem;
+    font-size: 1.05rem;
+    width: 95%;
+    justify-content: center;
+  }
+  .tools-section {
+    padding: 4rem 0;
+  }
+  .tools-section h2 {
+    font-size: 2rem;
+    margin-bottom: 2.5em;
+  }
+  .tool-card-content {
+    padding: 1.5rem;
+  }
+  .tool-link {
+    width: 100%;
+    justify-content: center;
+    padding: 0.9rem 1rem;
+  }
+  .footer-content {
+    gap: 2rem;
+  }
+  .footer-about,
+  .footer-links,
+  .footer-social {
+    margin-bottom: 1.5rem;
+  } /* Slightly less margin */
+}
